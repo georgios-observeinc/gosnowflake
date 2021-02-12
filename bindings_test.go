@@ -197,12 +197,12 @@ func TestBindingInterface(t *testing.T) {
 			"SELECT 1.0::NUMBER(30,2) as C1, 2::NUMBER(38,0) AS C2, 't3' AS C3, 4.2::DOUBLE AS C4, 'abcd'::BINARY AS C5, true AS C6")
 		defer rows.Close()
 		if !rows.Next() {
-			dbt.Error("failed to query")
+			dbt.Fatal("failed to query")
 		}
 		var v1, v2, v3, v4, v5, v6 interface{}
 		err = rows.Scan(&v1, &v2, &v3, &v4, &v5, &v6)
 		if err != nil {
-			dbt.Errorf("failed to scan: %#v", err)
+			dbt.Fatalf("failed to scan: %#v", err)
 		}
 		var s string
 		var ok bool
@@ -233,12 +233,12 @@ func TestBindingArrowInterface(t *testing.T) {
 			"SELECT 1.0::NUMBER(30,2) as C1, 2::NUMBER(38,0) AS C2, 't3' AS C3, 4.2::DOUBLE AS C4, 'abcd'::BINARY AS C5, true AS C6")
 		defer rows.Close()
 		if !rows.Next() {
-			dbt.Error("failed to query")
+			dbt.Fatal("failed to query")
 		}
 		var v1, v2, v3, v4, v5, v6 interface{}
 		err = rows.Scan(&v1, &v2, &v3, &v4, &v5, &v6)
 		if err != nil {
-			dbt.Errorf("failed to scan: %#v", err)
+			dbt.Fatalf("failed to scan: %#v", err)
 		}
 		var s1 *big.Float
 		var s2 int64
@@ -292,7 +292,7 @@ func TestBindingArray(t *testing.T) {
 				t.Fatalf("failed to fetch. expected: 1, 0.1, true, test1. got: %v, %v, %v, %v", v1, v2, v3, v4)
 			}
 		} else {
-			t.Error("failed to query")
+			t.Fatal("failed to query")
 		}
 
 		if rows.Next() {
@@ -304,7 +304,7 @@ func TestBindingArray(t *testing.T) {
 				t.Fatalf("failed to fetch. expected: 2, 2.34, false, test2. got: %v, %v, %v, %v", v1, v2, v3, v4)
 			}
 		} else {
-			t.Error("failed to query")
+			t.Fatal("failed to query")
 		}
 
 		if rows.Next() {
@@ -316,7 +316,7 @@ func TestBindingArray(t *testing.T) {
 				t.Fatalf("failed to fetch. expected: 3, test3. got: %v, %v, %v, %v", v1, v2, v3, v4)
 			}
 		} else {
-			t.Error("failed to query")
+			t.Fatal("failed to query")
 		}
 	})
 }
