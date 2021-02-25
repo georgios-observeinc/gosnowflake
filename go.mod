@@ -1,4 +1,4 @@
-module gosnowflake
+module github.com/observeinc/gosnowflake
 
 go 1.14
 
