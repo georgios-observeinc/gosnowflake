@@ -9,8 +9,12 @@ type ExecResponseChunk = execResponseChunk
 type SnowflakeRows = snowflakeRows
 type SnowflakeChunkDownloader = snowflakeChunkDownloader
 type SnowflakeRestful = snowflakeRestful
+type SnowflakeValue = snowflakeValue
+type ChunkRowType = chunkRowType
 
 // Methods
+
+var ArrowToValue = arrowToValue
 
 func (sr *snowflakeRows) GetExecResponse() *ExecResponse {
 	return sr.execResp
